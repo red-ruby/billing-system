@@ -1,0 +1,16 @@
+{
+  "name": "cbs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lincsIO/cbs",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-xeditable": "~0.1.9"
+  }
+}

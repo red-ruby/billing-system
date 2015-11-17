@@ -1,0 +1,235 @@
+.header {
+    min-height: 50px;
+    z-index: ;
+    border: 0;
+    margin: 0;
+}
+.header li:hover,
+.header li a:hover,
+.header li a:active {
+    background: transparent;
+}
+.header .brand {
+    width: ;
+    float: left;
+}
+.header .brand .navbar-brand {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 50px;
+}
+.header .brand .navbar-brand img {
+    max-height: 25px;
+    margin-right: 5px;
+    margin-top: -5px;
+}
+.header .navbar-nav {
+    margin: 0;
+}
+.header .navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-height: 50px;
+}
+.header .navbar-nav > li > a:focus {
+    background-color: transparent;
+}
+.header .header-avatar {
+    width: 32px;
+    margin-top: -6px;
+}
+.header > .nav > li > a > .badge {
+    position: absolute;
+    top: 8px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0;
+}
+.header .header-search {
+    position: relative;
+}
+.header .header-search .search-container {
+    top: 10px;
+    width: 0;
+    position: absolute;
+    left: 40px;
+}
+.header .header-search .search-container .search {
+    height: 30px;
+    border: 0;
+    padding: 0;
+    text-indent: 10px;
+    border-top-right-radius: ;
+    border-bottom-right-radius: ;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.header .header-search .toggle-search {
+    padding: 5px 9px !important;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+}
+.header .header-search.open > a {
+    z-index: 1001;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: ;
+    border-bottom-left-radius: ;
+}
+.header .header-search.open .search-container {
+    width: 300px;
+}
+.header .header-search.open .search-container .search {
+    padding-right: 12px;
+}
+.header .notifications {
+    position: relative;
+}
+.header .notifications .panel {
+    border: 0;
+}
+.header .notifications .panel-heading {
+    padding: 5px 15px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+.header .notifications ul li a {
+    font-size: ;
+}
+.header .notifications .panel-footer {
+    padding: 5px 15px;
+}
+.header .notifications .panel-footer > a {
+    font-size: ;
+}
+.header .notifications .m-body {
+    display: block;
+    overflow: hidden;
+}
+.header .notifications .time {
+    display: block;
+}
+.header .notifications .label {
+    font-size: 10px;
+}
+.header .notifications a:hover,
+.header .notifications a:visited,
+.header .notifications a:active {
+    color: ;
+}
+.horizontal-layout .brand {
+    width: auto;
+    background-color: transparent;
+}
+@media screen and (min-width: ) {
+    .header {
+        position: absolute;
+        width: 100%;
+        padding: 0 ;
+    }
+    .header .brand {
+        margin-left: -15px;
+    }
+    .header .brand .navbar-brand {
+        width: 100%;
+    }
+    .header .header-avatar {
+        float: left;
+    }
+    .header .notifications .dropdown-menu {
+        min-width: 350px;
+    }
+    .app > header .dropdown-menu {
+        border-top: 0;
+        padding: 0;
+        -webkit-animation-duration: 300ms;
+        -moz-animation-duration: 300ms;
+        animation-duration: 300ms;
+    }
+}
+@media (max-width: ) {
+    .header {
+        width: 100%;
+    }
+    .header.header-fixed {
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+    .header > .brand {
+        width: 100%;
+        text-align: center;
+    }
+    .header > .brand .navbar-brand {
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+    .header .notifications {
+        margin-right: 10px;
+    }
+    .header .navbar-nav .open .dropdown-menu {
+        position: absolute;
+        margin-top: 0;
+        background-color: #fff;
+    }
+    .header .navbar-collapse {
+        width: 100%;
+    }
+    .header .off-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .header .off-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .header .navbar-toggle,
+    .header .brand [data-toggle="offscreen"] {
+        z-index: ;
+        padding: 10px 15px;
+        margin-top: 8px;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 8px;
+        background-color: transparent;
+        background-image: none;
+        border: 1px solid transparent;
+    }
+    .header .search-container {
+        width: 100%;
+        max-width: 220px;
+    }
+    .app > .header > .nav > li {
+        float: left;
+    }
+    .app > .header > .navbar-nav {
+        float: left;
+    }
+    .app > .header > .navbar-right {
+        float: right;
+    }
+    .app > .header .dropdown-menu {
+        position: fixed !important;
+        top: 100px;
+        left: 0;
+        right: 0;
+    }
+    .app > header .dropdown-menu {
+        padding: 0;
+        border-bottom: 1px solid  !important;
+        -webkit-animation-duration: 0ms;
+        -moz-animation-duration: 0ms;
+        animation-duration: 0ms;
+    }
+}

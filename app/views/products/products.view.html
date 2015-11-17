@@ -1,0 +1,255 @@
+<div>
+     <div class="row" style="margin-top: 50px;">
+            <ol class="text-left breadcrumb"  style="margin-top: 25px">
+              <li><a href="#">Home</a></li>
+              <li><a ui-sref="products.list">Products</a></li>
+              <li class="active">{{product.name}}</li>
+            </ol>
+    </div>
+
+</div>
+
+<div class="col-sm-12">
+
+    <section class="panel panel-default">
+        <header class="panel-heading">
+            <h5 >{{product.name}} <a><i class="fa fa-pencil"></i></a></h5>
+        </header>
+        <div class="panel-body">
+            <row class="col-md-12">
+                <div class="col-md-2">
+                    <p><strong>Status</strong></p>
+                    <p>{{product.status}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>First Deduction Date</strong></p>
+                    <p>12/1/08</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>Most Recent FDD</strong></p>
+                    <p>Standard</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>Payroll Frequency</strong></p>
+                    <p></p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>Billing</strong></p>
+                    <p>Standard</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>Billing Fee</strong></p>
+                    <p>$5.00</p>
+                </div>
+            </row>
+
+        </div>
+    </section>
+    <section >
+
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Invoices</a></li>
+                <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Sub Groups </a></li>
+                <li role="presentation"><a href="#tab3" aria-controls="teab3" role="tab" data-toggle="tab">Employees</a></li>
+                <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Products</a></li>
+                <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">Payroll</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tab1">
+                    <br>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        April 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        September 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        July 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab2">
+                    <br>
+                    <button class="btn btn-default btn-lg">Add New Sub Group +</button>
+                    <div class="space" style="height:15px"></div>
+                    <div class="panel-group" id="accordionB" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOneB">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOneB" aria-expanded="true" aria-controls="collapseOneB">
+                                        <strong>Marketing</strong>
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOneB" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneB">
+                                <div class="panel-body">
+                                    <div class="col-md-2">
+                                        <p><strong>Status</strong></p>
+                                        <p>Active</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p><strong>Effective Date</strong></p>
+                                        <p>January 1, 2015</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p><strong>Billing</strong></p>
+                                        <p>Standard</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwoB">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoB" aria-expanded="false" aria-controls="collapseTwoB">
+                                        <strong>Accounting</strong>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwoB" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoB">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThreeB">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreeB" aria-expanded="false" aria-controls="collapseThreeB">
+                                        <strong>Sales</strong>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThreeB" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreeB">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab3">
+                    <br>
+                    <button class="btn btn-default btn-lg">Add New Employee +</button>
+                    <div class="space" style="height:15px"></div>
+                    <div class="panel-group" id="accordionC" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOneC">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOneC" aria-expanded="true" aria-controls="collapseOneC">
+                                        <strong>Employee 1</strong>
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOneC" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneC">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwoC">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoC" aria-expanded="false" aria-controls="collapseTwoC">
+                                        <strong>Employee 2</strong>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwoC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoC">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab4">
+                    <br>
+                    <button class="btn btn-default btn-lg">Add New Product +</button>
+                    <div class="space" style="height:15px"></div>
+                    <div class="panel-group" id="accordionD" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOneD">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOneD" aria-expanded="true" aria-controls="collapseOneD">
+                                        <strong>Product 1</strong>
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOneD" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneD">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwoD">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoD" aria-expanded="false" aria-controls="collapseTwoD">
+                                        <strong>Product 2</strong>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwoD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoD">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab5">
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

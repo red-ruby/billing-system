@@ -1,0 +1,36 @@
+{
+  "name": "cbs2",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify app/app.js -t brfs -o public/bundle.js",
+    "dev": "watchify app/app.js -t brfs -o public/bundle.js & nodemon server.js",
+    "start": "node server.js",
+    "test": "tap test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.4",
+    "angular-ui-router": "^0.2.13",
+    "domify": "^1.3.1",
+    "ecstatic": "^0.6.1",
+    "express": "^4.11.1",
+    "firebase": "^2.2.9",
+    "insert-css": "^0.2.0",
+    "mongoose": "^3.8.22",
+    "morgan": "^1.5.1"
+  },
+  "devDependencies": {
+    "brfs": "^1.3.0",
+    "browserify": "^8.1.1",
+    "nodemon": "^1.3.5",
+    "pre-commit": "^1.0.6",
+    "tap": "^0.5.0",
+    "watchify": "^2.2.1"
+  },
+  "env": {
+    "MONGO_URL": "mongodb://localhost:27017/cbs"
+  }
+}

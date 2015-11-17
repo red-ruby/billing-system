@@ -1,0 +1,199 @@
+<div>
+     <div class="row" style="margin-top: 50px;">
+            <ol class="text-left breadcrumb"  style="margin-top: 25px">
+              <li><a href="#">Home</a></li>
+              <li><a ui-sref="employees.list">Employees</a></li>
+              <li class="active">{{employee.name}}</li>
+            </ol>
+    </div>
+
+</div>
+
+<div class="col-sm-12">
+
+    <section class="panel panel-default">
+        <header class="panel-heading">
+            <h5 class="clearfix">
+                <span class="pull-left">{{employee.name}} <a ng-href='#/employees/edit/{{employee.$id}}'><i class="fa fa-pencil"></i></a></span>
+                <span class="pull-right"><i ng-click="removeEmployee()" class="pointer fa fa-trash-o"></i></span>
+            </h5>
+        </header>
+        <div class="panel-body">
+            <row class="col-md-12">
+                <div class="col-md-1">
+                    <p><strong>Status</strong></p>
+                    <p ng-switch="employee.status">
+                        <span ng-switch-when="0">Active</span>
+                        <span ng-switch-when="1">Inactive</span>
+                    </p>
+                </div>
+                <div class="col-md-1">
+                    <p><strong>Group</strong></p>
+                    <p>{{group}}</p>
+                </div>
+                <div class="col-md-1">
+                    <p><strong>Sub Group</strong></p>
+                    <p>{{employee.subGroup}}</p>
+                </div>
+                <div class="col-md-1">
+                    <p><strong>DOB</strong></p>
+                    <p>{{employee.DOB}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>SSN#</strong></p>
+                    <p>{{employee.SSN | ssnFilter}}</p>
+                </div>
+
+                <div class="col-md-2">
+                    <p><strong>First Deduction Date</strong></p>
+                    <p>{{employee.FDD}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>On Leave Date</strong></p>
+                    <p>{{employee.OLD}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><strong>Termination Date</strong></p>
+                    <p>{{employee.TD}}</p>
+                </div>
+            </row>
+
+        </div>
+    </section>
+    <section>
+
+        <div role="tabpanel" class="box-tab">
+
+            <!-- Nav tabs -->
+            <ul tabs class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#prod" aria-controls="prod" role="tab" ng-click="getProducts()">
+                        Products
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="prod">
+                    <br>
+                    <button class="btn btn-default btn-lg">Assign Product</button>
+                    <div class="space" style="height:15px"></div>
+                    <div accordion class="panel-group" id="accordionB" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default" ng-repeat="product in products">
+                            <div class="panel-heading" role="tab" id="heading{{$index}}C">
+                                <h4 class="panel-title">
+                                    <span data-toggle="collapse" href="#collapse{{$index}}C" aria-expanded="true" aria-controls="collapse{{$index}}C">
+                                        {{product.name}}
+                                    </span><!--a class="button-link" ng-href="#/employees/edit/{{product.$id}}" ><i class="fa fa-pencil"></i></a-->
+                                </h4>
+                            </div>
+                            <div id="collapse{{$index}}C" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{$index}}C">
+                                <div class="panel-body">
+
+                                    <table class="table table-bordered table-striped mg-t">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Carrier
+                                                </th>
+                                                <th>
+                                                    Group ID #
+                                                </th>
+                                                <th>
+                                                    Tax Status
+                                                </th>
+                                                <th>
+                                                    Pay Detail
+                                                </th>
+                                                <th>
+                                                    Deduction Amount
+                                                </th>
+                                                <th>
+                                                    FDD
+                                                </th>
+                                                <th>
+                                                    LDD
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td ng-bind="product.carrier"></td>
+                                                <td ng-bind="product.group_ID"></td>
+
+                                                <td ng-switch="product.taxStatus">
+                                                    <span ng-switch-when="0">Pre Tax</span>
+                                                    <span ng-switch-when="1">Post Tax</span>
+                                                </td>
+                                                <td>
+                                                    <input-switch data-index="{{$index}}">
+                                                        <div class="input-switch-label" ng-switch="product.payDetail">
+                                                            <span ng-switch-when="1">Benefit Volume</span>
+                                                            <span ng-switch-when="2"># Spouse Lives</span>
+                                                            <span ng-switch-when="3">Spouse Volume</span>
+                                                            <span ng-switch-when="4"># Dependent Lives</span>
+                                                            <span ng-switch-when="5">Dependent Volume</span>
+                                                            <span ng-switch-default># Lives</span>
+                                                        </div>
+                                                        <select class="form-control input-switch-edit ng-hide" ng-model="product.status" >
+                                                            <option value="0"># Lives</option>
+                                                            <option value="1">Benefit Volume</option>
+                                                            <option value="2"># Spouse Lives</option>
+                                                            <option value="3">Spouse Volume</option>
+                                                            <option value="4"># Dependent Lives</option>
+                                                            <option value="5">Dependent Volume</option>
+                                                        </select>
+                                                    </input-switch>
+                                                </td>
+                                                <td>
+                                                    <input-switch data-index="{{$index}}">
+                                                        <div class="input-switch-label" ng-bind="product.deductionAmount"></div>
+                                                        <input type="number" class="form-control input-switch-edit ng-hide" ng-model="product.deductionAmount">
+                                                    </input-switch>
+                                                </td>
+                                                <td>
+                                                    <input-switch data-index="{{$index}}">
+                                                        <div class="input-switch-label" ng-bind="product.FDD"></div>
+                                                        <input type="text" class="form-control input-switch-edit ng-hide" ng-model="product.FDD">
+                                                    </input-switch>
+                                                </td>
+                                                <td>
+                                                    <input-switch data-index="{{$index}}">
+                                                        <div class="input-switch-label" ng-bind="product.LDD"></div>
+                                                        <input type="text" class="form-control input-switch-edit ng-hide" ng-model="product.LDD">
+                                                    </input-switch>
+                                                </td>
+                                                <td>
+                                                    <input-switch data-index="{{$index}}">
+                                                        <div class="input-switch-label" ng-switch="product.status">
+                                                            <span ng-switch-when="0">Active</span>
+                                                            <span ng-switch-when="1">Inactive</span>
+                                                        </div>
+                                                        <select class="form-control input-switch-edit ng-hide" ng-model="product.status" >
+                                                            <option value="0">Active</option>
+                                                            <option value="1">Inactive</option>
+                                                        </select>
+                                                    </input-switch>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>

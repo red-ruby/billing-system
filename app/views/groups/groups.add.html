@@ -1,0 +1,604 @@
+<div>
+	<div class="row" style="margin-top: 50px;">
+		<ol class="text-left breadcrumb mt25">
+			<li><a href="#">Home</a></li>
+			<li><a ui-sref="groups.list">Groups</a></li>
+			<li class="active">{{(is_edit)?('Update ' + newGroup.name):'Create New Group'}}</li>
+		</ol>
+	</div>
+</div>
+
+<div class="container-fluid">
+
+<section class="panel panel-default">
+	<header class="panel-heading">
+		<h5>{{(is_edit)?('Update ' + newGroup.name):'Create New Group'}}</h5>
+	</header>
+	<div class="panel-body" style="height: auto;">
+
+	<form role="form" class="form-horizontal" ng-submit="submitGroup(is_edit)">
+
+			<div class="row addForm">
+				<div class="col-sm-12">
+					<h4>General Information</h4>
+				</div>
+			</div>
+
+		<div class="form-group addForm">
+			<label class="col-sm-2 control-label">Choose which name to display on invoice</label>
+			<div class="col-sm-10">
+
+				<div class="input-group mb15">
+					<span class="input-group-addon">
+						<input type="checkbox">
+					</span>
+					<input type="text" class="form-control" id="groupName" ng-model="newGroup.name" placeholder="Name">
+				</div>
+				<div class="input-group mb15">
+					<span class="input-group-addon">
+						<input type="checkbox">
+					</span>
+					<input type="text" class="form-control" id="groupAKA" ng-model="newGroup.AKA" placeholder="AKA">
+				</div>
+				<div class="input-group mb15">
+					<span class="input-group-addon">
+						<input type="checkbox">
+					</span>
+					<input type="text" class="form-control" id="groupFKA" ng-model="newGroup.FKA" placeholder="Formerly known as">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group addForm">
+			<label for="groupStatus" class="col-sm-2 control-label">Status</label>
+
+			<div class="col-sm-10">
+
+				<select class="form-control" ng-model="newGroup.status" id="groupStatus">
+					<option value="0">Active</option>
+					<option value="1">Inactive</option>
+				</select>
+
+			</div>
+		</div>
+		<br>
+
+
+		<div class="form-group addForm">
+			<label class="col-sm-2 control-label">Select all that apply</label>
+
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"   ng-model="newGroup.standardBilling" id="standardBilling" name="standard billing">Standard Billing</label>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="newGroup.multipleLocations" id="multipleLocations" name="multiple locations">Multiple Locations</label>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="newGroup.multiplePayrollFreq" id="multiplePayrollFreq" name="multiple payroll frequencies">Multiple Payroll Frequencies</label>
+						</div>
+					</div>
+
+					<div class="col-xs-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="newGroup.groupSubdivisions" id="multipleInvoices" name="multiple invoices">Multiple Invoices</label>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="newGroup.importExportFiles" id="groupImportExportFiles" name="import/export files">Import/Export Files</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<br />
+
+
+
+		<div class="addForm">
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>Primary Group Payroll</h4>
+				</div>
+			</div>
+
+			<div class="form-group addForm">
+				<label for="firstDeductionDate" class="col-sm-2 control-label">First Deduction Date</label>
+				<div class="col-sm-10">
+					<input datepicker type="text" class="form-control" ng-model="newGroup.firstDeductionDate" id="firstDeductionDate" value="02-16-2015">
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="deductionFrequency" class="col-sm-2 control-label">Deduction Frequency</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.deductionFrequency" id="deductionFrequency">
+						<option value="0">Weekly</option>
+						<option value="1">48 Week</option>
+						<option value="2">Bi Weekly</option>
+						<option value="3">Semi Monthly</option>
+						<option value="4">Semi Monthly from Bi Weekly</option>
+						<option value="5">Monthly</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="payrollDay" class="col-sm-2 control-label">Payroll Day of the Week</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.payrollDay" id="payrollDay">
+						<option value="0">Monday</option>
+						<option value="1">Tuesday</option>
+						<option value="2">Wednesday</option>
+						<option value="3">Thursday</option>
+						<option value="4">Friday</option>
+						<option value="5">Saturday</option>
+						<option value="6">Sunday</option>
+					</select>
+
+				</div>
+			</div>
+		</div>
+
+
+		<br />
+
+
+		<div class="addForm">
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>Primary Group Billing</h4>
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="billingFee" class="col-sm-2 control-label">Billing Fee</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.billingFee" id="billingFee">
+						<option value="$5.00" ng-selected="true">$5.00</option>
+						<option value="Paid by broker">Paid by Broker</option>
+						<option value="none">None</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="billingFrequency" class="col-sm-2 control-label">Billing Frequency</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.billingFrequency" id="billingFrequency">
+						<option value="0">Monthly</option>
+						<option value="1">Every Four Weeks</option>
+						<option value="2">Every Payroll</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="billingMethod" class="col-sm-2 control-label">Billing Method</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.billingMethod" id="billingMethod">
+						<option value="0">Creative Billing</option>
+						<option value="1">Creative Billing Manual Method</option>
+						<option value="2">Self Billed - Payment Made to Creative Billing</option>
+						<option value="3">Carrier Billed Direct to Group</option>
+						<option value="4">Other</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group addForm">
+				<label for="paymentMethod" class="col-sm-2 control-label">Payment Method</label>
+
+				<div class="col-sm-10">
+
+					<select class="form-control" ng-model="newGroup.paymentMethod" id="paymentMethod">
+						<option value="0">Check by Mail</option>
+						<option value="1">EFT</option>
+					</select>
+
+				</div>
+			</div>
+
+			<div class="form-group addForm">
+				<label for="notes" class="col-sm-2 control-label">Notes</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" rows="3" ng-model="newGroup.notes" id="notes"></textarea>
+				</div>
+			</div>
+			</div>
+			<br><br><br>
+
+		<section class="panel panel-default editabletable-wrapper">
+			<header class="panel-heading clearfix">
+				<span class="pull-left">Products</span>
+				<!--span class="pull-right"><i ng-click="products.addRow()" class="ti-plus pointer"></i></span-->
+			</header>
+
+
+			<div class="addForm">
+				<div class="row">
+					<div class="col-xs-6 form-inline mb15">
+
+						<div class="form-group">
+						    <label for="table-length" class="sr-only">Items per page</label>
+						    <select id="table-length" class="form-control" ng-model="datatable.products.itemsPerPage">
+								<option value="10">10</option>
+								<option value="25">25</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+							</select>
+						</div>
+						<!--button type="button" class="btn btn-primary ml15" ng-click="products.addRow()">Add new row</button-->
+					</div>
+
+					<div class="col-xs-6 form-inline mb15">
+						<autongcomplete
+							placeholder="Add products"
+							pause="500"
+							label="Add products"
+							input-id="products"
+							input-class="form-control"
+							limit-to="10"
+							min-length="3"
+							data-handler="getProducts"
+							search-field="name"
+							selection-handler="addRow"></autongcomplete>
+					</div>
+				</div>
+
+				<div class="table-responsive no-border">
+					<table data-cols="7" class="table table-bordered table-striped mg-t dataTable editable-datatable read-only">
+						<thead>
+							<tr>
+								<th>
+									<span ng-click="datatable.products.sort_by('taxStatus')" ng-class="datatable.products.selectedCls('taxStatus')">
+			  							Tax Status
+			  						</span>
+								</th>
+								<th>
+									<span ng-click="datatable.products.sort_by('name')" ng-class="datatable.products.selectedCls('name')">
+			  							Name
+			  						</span>
+								</th>
+								<th>
+									<span ng-click="datatable.products.sort_by('carrier')" ng-class="datatable.products.selectedCls('carrier')">
+			  							Carrier
+			  						</span>
+			  					</th>
+								<th>
+									<span ng-click="datatable.products.sort_by('groupID')" ng-class="datatable.products.selectedCls('groupID')">
+			  							Group ID#
+			  						</span>
+			  					</th>
+								<th>
+									<span ng-click="datatable.products.sort_by('payDetail')" ng-class="datatable.products.selectedCls('payDetail')">
+			  							Pay Detail
+			  						</span>
+			  					</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in products | orderBy:datatable.products.sort.sortingOrder:datatable.products.sort.reverse" ng-if="products.length" role="row" ng-class-odd="'odd'" ng-class-even="'even'">
+								<td ng-switch="item.taxStatus">
+                                    <span ng-switch-when="0">Active</span>
+                                    <span ng-switch-when="1">Inactive</span>
+                                </td>
+                                <td ng-bind="item.name"></td>
+                                <td ng-bind="item.carrier"></td>
+                                <td ng-bind="item.groupID"></td>
+                                <td ng-switch="item.payDetail">
+                                    <span ng-switch-when="1">Benefit Volume</span>
+                                    <span ng-switch-when="2"># Spouse Lives</span>
+                                    <span ng-switch-when="3">Spouse Volume</span>
+                                    <span ng-switch-when="4"># Dependent Lives</span>
+                                    <span ng-switch-when="5">Dependent Volume</span>
+                                    <span ng-switch-default># Lives</span>
+                                </td>
+								<td>
+									<button type="button" class="delete btn btn-default" ng-click="datatable.products.removeRow(item, $index)">
+										Delete <i class="fa fa-times"></i>
+									</button>
+								</td>
+							</tr>
+
+							<tr ng-if="!products.length" class="odd">
+								<td colspan="6" class="text-center dataTables_empty">
+									No data available in table
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="datatable-bottom" ng-if="products.length">
+						<div class="pull-left">
+							<div class="dataTables_info" role="status" aria-live="polite">
+								Showing {{ (datatable.products.itemsPerPage>products.length)?products.length:datatable.products.itemsPerPage}} of {{products.length}} entries
+							</div>
+						</div>
+						<!--div class="pull-right">
+							<div class="dataTables_paginate paging_bootstrap">
+								<ul class="pagination pagination-sm">
+									<li class="prev" ng-class="{disabled: currentPage == 0}">
+										<a href="javascript:void(0)" title="Previous" ng-click="products.prevPage()">
+											<i class="ti-arrow-left mr5"></i>Previous
+										</a>
+									</li>
+									<li
+										ng-repeat="n in products.range(products.pagedItems.length, products.currentPage, products.currentPage + products.gap) "
+                                    	ng-class="{active: n == products.currentPage}"
+                                		ng-click="products.setPage(n)">
+	                                    <a href="javascript:void(0)" ng-bind="n + 1" ng-if="(n + 1)>0">1</a>
+	                                </li>
+									<li class="next" ng-class="{disabled: (products.currentPage) == products.pagedItems.length - 1}">
+										<a href="javascript:void(0)" title="Next" ng-click="products.nextPage()">
+											<i class="ti-arrow-right mr5"></i>Next
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div-->
+					</div>
+				</div>
+			</div><!-- .addForm -->
+		</section>
+
+		<section class="panel panel-default">
+			<header class="panel-heading clearfix">
+				<span class="pull-left">Contacts</span>
+			</header>
+
+
+			<div class="addForm">
+				<div class="row">
+					<div class="col-xs-6 form-inline mb15">
+
+						<div class="form-group">
+						    <label for="table-contact-length" class="sr-only">Items per page</label>
+						    <select id="table-contact-length" class="form-control" ng-model="datatable.primary.itemsPerPage" ng-change="datatable.primary.search()">
+								<option value="10">10</option>
+								<option value="25">25</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+							</select>
+						</div>
+						<button type="button" class="btn btn-primary ml15" ng-click="datatable.addRow('primary')">Add new row</button>
+					</div>
+				</div>
+
+				<div class="table-responsive no-border">
+					<h4>Primary Contact</h4>
+					<table class="table table-bordered table-striped mg-t dataTable editable-datatable">
+						<thead>
+							<tr>
+								<th>
+									<span ng-click="datatable.primary.sort_by('firstName')" ng-class="datatable.primary.selectedCls('firstName')">
+			  							First Name
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.primary.sort_by('lastName')" ng-class="datatable.primary.selectedCls('lastName')">
+			  							Last Name
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.primary.sort_by('title')" ng-class="datatable.primary.selectedCls('title')">
+			  							Title
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.primary.sort_by('email')" ng-class="datatable.primary.selectedCls('email')">
+			  							Email
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.primary.sort_by('phone')" ng-class="datatable.primary.selectedCls('phone')">
+			  							Phone
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.primary.sort_by('fax')" ng-class="datatable.primary.selectedCls('fax')">
+			  							Fax
+			  						</span>
+			  					</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in datatable.primary.pagedItems[datatable.primary.currentPage] | orderBy:datatable.primary.sort.sortingOrder:datatable.primary.sort.reverse" ng-if="newGroup.contacts.primary.length" role="row" ng-class-odd="'odd'" ng-class-even="'even'">
+								<td><input type="text" class="form-control" ng-model="item.firstName"></td>
+								<td><input type="text" class="form-control" ng-model="item.lastName"></td>
+								<td><input type="text" class="form-control" ng-model="item.title"></td>
+								<td><input type="email" class="form-control" ng-model="item.email"></td>
+								<td><input type="phone" class="form-control" ng-model="item.phone"></td>
+								<td><input type="text" class="form-control" ng-model="item.fax"></td>
+								<td>
+									<button type="button" class="delete btn btn-default" ng-click="datatable.primary.removeRow(item, $index)">
+										Delete <i class="fa fa-times"></i>
+									</button>
+								</td>
+							</tr>
+
+							<tr ng-if="!newGroup.contacts.primary.length" class="odd">
+								<td colspan="7" class="text-center dataTables_empty">
+									No data available in table
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="datatable-bottom" ng-if="newGroup.contacts.primary.length">
+						<div class="pull-left">
+							<div class="dataTables_info" role="status" aria-live="polite">
+								Showing {{datatable.primary.pagedItems[datatable.primary.currentPage].length}} of {{newGroup.contacts.primary.length}} entries
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="dataTables_paginate paging_bootstrap">
+								<ul class="pagination pagination-sm">
+									<li class="prev" ng-class="{disabled: datatable.primary.currentPage == 0}">
+										<a href="javascript:void(0)" title="Previous" ng-click="datatable.primary.prevPage()">
+											<i class="ti-arrow-left mr5"></i>Previous
+										</a>
+									</li>
+									<li
+										ng-repeat="n in datatable.primary.range(datatable.primary.pagedItems.length, datatable.primary.currentPage, datatable.primary.currentPage + datatable.primary.gap) "
+                                    	ng-class="{active: n == datatable.primary.currentPage}"
+                                		ng-click="datatable.primary.setPage(n)">
+	                                    <a href="javascript:void(0)" ng-bind="n + 1" ng-if="(n + 1)>0">1</a>
+	                                </li>
+									<li class="next" ng-class="{disabled: (datatable.primary.currentPage) == datatable.primary.pagedItems.length - 1}">
+										<a href="javascript:void(0)" title="Next" ng-click="datatable.primary.nextPage()">
+											<i class="ti-arrow-right mr5"></i>Next
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-xs-6 form-inline mb15">
+
+						<div class="form-group">
+						    <label for="table-contact-broker-length" class="sr-only">Items per page</label>
+						    <select id="table-contact-broker-length" class="form-control" ng-model="datatable.broker.itemsPerPage" ng-change="datatable.broker.search()">
+								<option value="10">10</option>
+								<option value="25">25</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+							</select>
+						</div>
+						<button type="button" class="btn btn-primary ml15" ng-click="addRow('broker')">Add new row</button>
+					</div>
+				</div>
+
+				<div class="table-responsive no-border">
+					<h4>Broker Contact</h4>
+					<table class="table table-bordered table-striped mg-t datatable editable-datatable">
+						<thead>
+							<tr>
+								<th>
+									<span ng-click="datatable.broker.sort_by('firstName')" ng-class="datatable.broker.selectedCls('firstName')">
+			  							First Name
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.broker.sort_by('lastName')" ng-class="datatable.broker.selectedCls('lastName')">
+			  							Last Name
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.broker.sort_by('company')" ng-class="datatable.broker.selectedCls('company')">
+			  							Company
+			  						</span>
+			  					</th>
+
+								<th>
+									<span ng-click="datatable.broker.sort_by('email')" ng-class="datatable.broker.selectedCls('email')">
+			  							Email
+			  						</span>
+			  					</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in datatable.broker.pagedItems[datatable.broker.currentPage] | orderBy:datatable.broker.sort.sortingOrder:datatable.broker.sort.reverse" ng-if="newGroup.contacts.broker.length" role="row" ng-class-odd="'odd'" ng-class-even="'even'">
+								<td><input type="text" class="form-control" ng-model="item.firstName"></td>
+								<td><input type="text" class="form-control" ng-model="item.lastName"></td>
+								<td><input type="text" class="form-control" ng-model="item.company"></td>
+								<td><input type="email" class="form-control" ng-model="item.email"></td>
+								<td>
+									<button type="button" class="delete btn btn-default" ng-click="datatable.broker.removeRow(item, $index)">
+										Delete <i class="fa fa-times"></i>
+									</button>
+								</td>
+							</tr>
+
+							<tr ng-if="!newGroup.contacts.broker.length" class="odd">
+								<td colspan="5" class="text-center dataTables_empty">
+									No data available in table
+								</td>
+							</tr>
+
+
+						</tbody>
+					</table>
+
+					<div class="datatable-bottom" ng-if="newGroup.contacts.broker.length">
+						<div class="pull-left">
+							<div class="dataTables_info" role="status" aria-live="polite">
+								Showing {{datatable.broker.pagedItems[datatable.broker.currentPage].length}} of {{newGroup.contacts.broker.length}} entries
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="dataTables_paginate paging_bootstrap">
+								<ul class="pagination pagination-sm">
+									<li class="prev" ng-class="{disabled: datatable.broker.currentPage == 0}">
+										<a href="javascript:void(0)" title="Previous" ng-click="datatable.broker.prevPage()">
+											<i class="ti-arrow-left mr5"></i>Previous
+										</a>
+									</li>
+									<li
+										ng-repeat="n in datatable.broker.range(datatable.broker.pagedItems.length, datatable.broker.currentPage, datatable.broker.currentPage + datatable.broker.gap) "
+                                    	ng-class="{active: n == datatable.broker.currentPage}"
+                                		ng-click="datatable.broker.setPage(n)">
+	                                    <a href="javascript:void(0)" ng-bind="n + 1" ng-if="(n + 1)>0">1</a>
+	                                </li>
+									<li class="next" ng-class="{disabled: (datatable.broker.currentPage) == datatable.broker.pagedItems.length - 1}">
+										<a href="javascript:void(0)" title="Next" ng-click="datatable.broker.nextPage()">
+											<i class="ti-arrow-right mr5"></i>Next
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- .addForm -->
+		</section>
+
+		<div class="text-center">
+			<a ng-href="{{(is_edit)?'#/groups/view/'+stateID:'#/groups/list'}}" class="btn btn-danger btn-outline">Cancel</a>
+			<button type="submit" class=" btn btn-primary btn-outline">{{(is_edit)?'Update':'Submit'}}</button>
+		</div>
+	</form>
+
+	</div>
+</section>
+
+</div>

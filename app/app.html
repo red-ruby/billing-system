@@ -1,0 +1,168 @@
+	<div ng-app="myApp" class="app">
+	  <!-- top header -->
+	  <header class="header navbar" data-ng-if="loggedIn">
+
+		  <div class="brand">
+			  <!-- toggle offscreen menu -->
+			  <a href="#" class="ti-menu off-left visible-xs mr10" data-toggle="offscreen" data-move="ltr"></a>
+			  <!-- /toggle offscreen menu -->
+
+			  <!-- logo -->
+
+			  <a href="index.html" class="navbar-brand text-center" >
+				  <span class="heading-font">
+					  Creative Billing
+				  </span>
+			  </a>
+			  <!-- /logo -->
+
+		  </div>
+
+		  <ul class="nav navbar-nav">
+			  <li class="hidden-xs">
+
+				  <!-- toggle small menu -->
+				  <a href="" class="toggle-sidebar">
+					  <i class="ti-menu"></i>
+				  </a>
+				  <!-- /toggle small menu -->
+
+			  </li>
+
+		  </ul>
+
+		  <ul class="nav navbar-nav navbar-right">
+			  <li class="off-right">
+				  <a href="" data-toggle="dropdown">
+					  <img src="img/faceless.jpg" class="header-avatar img-circle" alt="user" title="user">
+					  <span class="hidden-xs ml10">Gerald Morris</span>
+					  <i class="ti-angle-down ti-caret hidden-xs"></i>
+				  </a>
+				  <ul class="dropdown-menu animated fadeInRight">
+					  <li>
+						  <a ui-sref="profile">Profile</a>
+					  </li>
+					  <li>
+						  <a ui-sref="help">Help</a>
+					  </li>
+					  <li>
+						  <a ng-controller="LogoutCtrl" ng-click="logout()">Logout</a>
+					  </li>
+				  </ul>
+			  </li>
+		  </ul>
+	  </header>
+	  <!-- /top header -->
+
+	  <section class="layout">
+		  <!-- sidebar menu -->
+		  <aside class="sidebar offscreen-left">
+			  <!-- main navigation -->
+			  <nav class="main-navigation" data-height="auto" data-size="6px" data-distance="0" data-rail-visible="true" data-wheel-step="10">
+				  <p class="nav-title">MENU</p>
+				  <ul class="nav">
+
+					  <!-- Groups -->
+					  <li>
+						  <a href="#groups/list">
+							  <i class="ti-briefcase"></i>
+							  <span>Groups</span>
+						  </a>
+					  </li>
+					  <li>
+						  <a href="#subgroups/list">
+							  <i class="ti-briefcase"></i>
+							  <span>Sub Groups</span>
+						  </a>
+					  </li>
+					  <!-- /Groups -->
+
+					  <!-- Employees -->
+					  <li>
+						  <a href="#employees/list ">
+							  <i class="ti-user"></i>
+							  <span>Employees</span>
+						  </a>
+					  </li>
+					  <!-- /Employees -->
+
+					  <!-- Carriers -->
+					  <li>
+						  <a href="#carriers/list">
+							  <i class="ti-shield"></i>
+							  <span>Carriers</span>
+						  </a>
+					  </li>
+					  <!-- /Carriers -->
+
+					  <!-- Products -->
+					  <!-- <li>
+						  <a href="#products/list">
+							  <i class="ti-package"></i>
+							  <span>Products</span>
+						  </a>
+					  </li> -->
+					  <!-- /Products -->
+
+
+					  <!-- Invoices -->
+					  <!-- <li>
+						  <a href="#invoices/list">
+							  <i class="ti-receipt"></i>
+							  <span>Invoices</span>
+						  </a>
+					  </li> -->
+					  <!-- /Invoices -->
+					  <!-- Receipts -->
+					<li>
+						<a href="#reports" class="clearfix">
+							<span class="pull-left">
+								<i class="ti-file"></i>
+								<span>Reports</span>
+							</span>
+							<i class="pt5 pull-right ti-angle-down"></i>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="#reports">Audits</a></li>
+							<li><a href="#reports">Past Due Reports</a></li>
+						</ul>
+					</li>
+					<!-- /Receipts -->
+
+				  </ul>
+			  </nav>
+		  </aside>
+		  <!-- /sidebar menu -->
+
+		  <div class="mainContainer"  ui-view></div>
+
+
+
+	</section>
+
+	<div id="confirm-modal" class="modal fade">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{modal_title}}</h4>
+				</div>
+				<form ng-submit="confirm(user)">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="password" class="control-label">Confirm your password:</label>
+						<input type="password" class="form-control" id="password" ng-model="user.password" required>
+					</div>
+					<div class="alert alert-danger" role="alert" ng-if="modalMsg">{{modalMsg}}</div>
+				</div>
+				<div class="modal-footer">
+					<div ng-show="modal_loading" class='loader'></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Delete</button>
+				</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+  </div>

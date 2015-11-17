@@ -1,0 +1,286 @@
+<div>
+     <div class="row" style="margin-top: 50px;">
+            <ol class="text-left breadcrumb"  style="margin-top: 25px">
+              <li><a href="#">Home</a></li>
+              <li><a ui-sref="employees.list">Employees</a></li>
+              <li class="active">{{(is_edit)?('Update ' + newEmployee.name):'Create New Employee'}}</li>
+            </ol>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+
+<section class="panel panel-default">
+    <header class="panel-heading">
+        <h5>{{(is_edit)?('Update ' + newEmployee.name):'Create New Employee'}}</h5>
+    </header>
+    <div class="panel-body" style="height: auto;">
+
+        <form role="form" class="form-horizontal" ng-submit="submitEmployee(is_edit)">
+
+    	    <div class="row addForm">
+    	        <div class="col-sm-12">
+    	            <h4>General Information</h4>
+    	        </div>
+    	    </div>
+             <div class="form-group">
+                <label for="employeeGroup" class="col-sm-2 control-label">Group</label>
+                <div class="col-sm-10">
+                    <select ng-model="group" id="employeeGroup" class="form-control" ng-options="group.name for group in groups track by group.$id">
+                        <option value="">Choose a group</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeSubGroup">Sub Group</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="employeeSubGroup" ng-model="newEmployee.subGroup">
+                        <option>Stark</option>
+                        <option>Lanister</option>
+                        <option>Tyrell</option>
+                        <option>Baratheon</option>
+                        <option>Martell</option>
+                        <option>Tully</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Choose which name to display on invoice</label>
+                <div class="col-sm-10">
+
+                    <div class="input-group mb15">
+                        <span class="input-group-addon">
+                            <input type="checkbox">
+                        </span>
+                        <input type="text" class="form-control" id="employeeName" ng-model="newEmployee.name" placeholder="Name">
+                    </div>
+                    <div class="input-group mb15">
+                        <span class="input-group-addon">
+                            <input type="checkbox">
+                        </span>
+                        <input type="text" class="form-control" id="employeeAKA" ng-model="newEmployee.AKA" placeholder="AKA">
+                    </div>
+                    <div class="input-group mb15">
+                        <span class="input-group-addon">
+                            <input type="checkbox">
+                        </span>
+                        <input type="text" class="form-control" id="employeeFKA" ng-model="newEmployee.FKA" placeholder="Formerly known as">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeStatus">Status</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="employeeStatus" ng-model="newEmployee.status">
+                        <option value="0">Active</option>
+                        <option value="1">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employee_id">Employee ID</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" ng-model="newEmployee.id" max="9999999999" min="1" id="employee_id">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeDOB">Date of Birth</label>
+                <div class="col-sm-10">
+                    <input datepicker type="text" class="form-control" value="02-16-2015" id="employeeDOB" ng-model="newEmployee.DOB">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeSSN">SSN #</label>
+                <div class="col-sm-10">
+                    <input ssn-field type="text" class="form-control" placeholder="SSN" id="employeeSSN" ng-model="newEmployee.SSN">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeFDD">First Deduction Date</label>
+                <div class="col-sm-10">
+                    <input datepicker type="text" class="form-control" placeholder="First Deduction Date" id="employeeFDD" ng-model="newEmployee.FDD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeOLD">On Leave Date</label>
+                <div class="col-sm-10">
+                    <input datepicker type="text" class="form-control" placeholder="On Leave Date" id="employeeOLD" ng-model="newEmployee.OLD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="employeeTD">Termination Date</label>
+                <div class="col-sm-10">
+                    <input datepicker type="text" class="form-control" placeholder="On Leave Date" id="employeeTD" ng-model="newEmployee.TD">
+                </div>
+            </div>
+
+            <section class="panel panel-default editabletable-wrapper">
+            <header class="panel-heading clearfix">
+                <span class="pull-left">Products</span>
+                <!--span class="pull-right"><i ng-click="products.addRow()" class="ti-plus pointer"></i></span-->
+            </header>
+
+
+            <div class="addForm">
+                <div class="row">
+                    <div class="col-xs-6 form-inline mb15">
+
+                        <div class="form-group">
+                            <label for="table-length" class="sr-only">Items per page</label>
+                            <select id="table-length" class="form-control" ng-model="datatable.products.itemsPerPage">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <!--button type="button" class="btn btn-primary ml15" ng-click="products.addRow()">Add new row</button-->
+                    </div>
+
+                    <div class="col-xs-3 form-inline mb15">
+                        <div class="form-group">
+                            <label for="groups" class="sr-only">Groups</label>
+                            <select ng-model="groupSelected" id="groups" class="form-control" ng-options="group.name for group in groups">
+                                <option value="">Choose a group</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 form-inline mb15">
+
+                        </select>
+                        <autongcomplete
+                            watch="groupSelected"
+                            placeholder="Add products"
+                            pause="500"
+                            label="Add products"
+                            input-id="products"
+                            input-class="form-control"
+                            limit-to="10"
+                            min-length="3"
+                            data-handler="getGroupProds"
+                            search-field="name"
+                            selection-handler="addRow"></autongcomplete>
+                    </div>
+                </div>
+
+                <div class="table-responsive no-border">
+                    <table data-cols="7" class="table table-bordered table-striped mg-t dataTable editable-datatable read-only">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span ng-click="datatable.products.sort_by('taxStatus')" ng-class="datatable.products.selectedCls('taxStatus')">
+                                        Tax Status
+                                    </span>
+                                </th>
+                                <th>
+                                    <span ng-click="datatable.products.sort_by('name')" ng-class="datatable.products.selectedCls('name')">
+                                        Name
+                                    </span>
+                                </th>
+                                <th>
+                                    <span ng-click="datatable.products.sort_by('carrier')" ng-class="datatable.products.selectedCls('carrier')">
+                                        Carrier
+                                    </span>
+                                </th>
+                                <th>
+                                    <span ng-click="datatable.products.sort_by('groupID')" ng-class="datatable.products.selectedCls('groupID')">
+                                        Group ID#
+                                    </span>
+                                </th>
+                                <th>
+                                    <span ng-click="datatable.products.sort_by('payDetail')" ng-class="datatable.products.selectedCls('payDetail')">
+                                        Pay Detail
+                                    </span>
+                                </th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in products | orderBy:datatable.products.sort.sortingOrder:datatable.products.sort.reverse" ng-if="products.length" role="row" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td ng-switch="item.taxStatus">
+                                    <span ng-switch-when="0">Active</span>
+                                    <span ng-switch-when="1">Inactive</span>
+                                </td>
+                                <td ng-bind="item.name"></td>
+                                <td ng-bind="item.carrier"></td>
+                                <td ng-bind="item.groupID"></td>
+                                <td ng-switch="item.payDetail">
+                                    <span ng-switch-when="1">Benefit Volume</span>
+                                    <span ng-switch-when="2"># Spouse Lives</span>
+                                    <span ng-switch-when="3">Spouse Volume</span>
+                                    <span ng-switch-when="4"># Dependent Lives</span>
+                                    <span ng-switch-when="5">Dependent Volume</span>
+                                    <span ng-switch-default># Lives</span>
+                                </td>
+                                <td>
+                                    <button type="button" class="delete btn btn-default" ng-click="datatable.products.removeRow(item, $index)">
+                                        Delete <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr ng-if="!products.length" class="odd">
+                                <td colspan="6" class="text-center dataTables_empty">
+                                    No data available in table
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="datatable-bottom" ng-if="products.length">
+                        <div class="pull-left">
+                            <div class="dataTables_info" role="status" aria-live="polite">
+                                Showing {{ (datatable.products.itemsPerPage>products.length)?products.length:datatable.products.itemsPerPage}} of {{products.length}} entries
+                            </div>
+                        </div>
+                        <!--div class="pull-right">
+                            <div class="dataTables_paginate paging_bootstrap">
+                                <ul class="pagination pagination-sm">
+                                    <li class="prev" ng-class="{disabled: currentPage == 0}">
+                                        <a href="javascript:void(0)" title="Previous" ng-click="products.prevPage()">
+                                            <i class="ti-arrow-left mr5"></i>Previous
+                                        </a>
+                                    </li>
+                                    <li
+                                        ng-repeat="n in products.range(products.pagedItems.length, products.currentPage, products.currentPage + products.gap) "
+                                        ng-class="{active: n == products.currentPage}"
+                                        ng-click="products.setPage(n)">
+                                        <a href="javascript:void(0)" ng-bind="n + 1" ng-if="(n + 1)>0">1</a>
+                                    </li>
+                                    <li class="next" ng-class="{disabled: (products.currentPage) == products.pagedItems.length - 1}">
+                                        <a href="javascript:void(0)" title="Next" ng-click="products.nextPage()">
+                                            <i class="ti-arrow-right mr5"></i>Next
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div-->
+                    </div>
+                </div>
+            </div><!-- .addForm -->
+        </section>
+
+
+            <div class="text-center mt25">
+              <a ng-href="{{(is_edit)?'#/employees/view/'+stateID:'#/employees/list'}}" class="btn btn-danger btn-outline">Cancel</a>
+              <button type="submit" class="btn btn-primary btn-outline">{{(is_edit)?'Update':'Submit'}}</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+</div>

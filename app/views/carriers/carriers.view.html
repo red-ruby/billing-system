@@ -1,0 +1,123 @@
+<div>
+     <div class="row" style="margin-top: 50px;">
+            <ol class="text-left breadcrumb"  style="margin-top: 25px">
+              <li><a href="#">Home</a></li>
+              <li><a ui-sref="carriers.list">Carriers</a></li>
+              <li class="active">{{carrier.name}}</li>
+            </ol>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <section class="panel panel-default">
+            <!--header class="panel-heading">
+                <h5 editable-text="carrier.name">{{carrier.name}}</h5>
+            </header-->
+            <header class="panel-heading">
+                <h5 class="clearfix">
+                    <span class="pull-left">{{carrier.name}} <a ng-href='#/carriers/edit/{{carrier.$id}}'><i class="fa fa-pencil"></i></a></span>
+                    <span class="pull-right"><i ng-click="removeCarrier()" class="pointer fa fa-trash-o"></i></span>
+                </h5>
+            </header>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        <p><strong>Status</strong></p>
+                        <p ng-switch="carrier.status">
+                            <span ng-switch-when="0">Active</span>
+                            <span ng-switch-when="1">Inactive</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-2" >
+                        <p><strong>Effective Date</strong><br>10/10/14</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-tab">
+
+            <ul tabs class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#products-tab" role="tab" ng-click="getProducts()">Products</a>
+                </li>
+                <li role="presentation">
+                    <a href="#contacts" role="tab">Contacts</a>
+                </li>
+                <li role="presentation">
+                    <a href="#divisions" role="tab">Divisions</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="products-tab">
+
+                    <div accordion class="panel-group" id="product-accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default" ng-repeat="product in products">
+                            <div class="panel-heading" role="tab" id="heading{{$index}}C">
+                                <h4 class="panel-title">
+                                    <span data-toggle="collapse" href="#collapse{{$index}}C" aria-expanded="true" aria-controls="collapse{{$index}}C">
+                                        {{product.name}}
+                                    </span><!--a class="button-link" ng-href="#/products/edit/{{product.$id}}" ><i class="fa fa-pencil"></i></a-->
+                                </h4>
+                            </div>
+                            <div id="collapse{{$index}}C" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{$index}}C">
+                                <div class="panel-body">
+
+                                    <table class="table table-bordered table-striped mg-t">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Tax Status
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Pay detail
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td ng-switch="product.taxStatus">
+                                                    <span ng-switch-when="0">Pre Tax</span>
+                                                    <span ng-switch-when="1">Post Tax</span>
+                                                </td>
+                                                <td ng-bind="product.name"></td>
+                                                <td ng-switch="product.payDetail">
+                                                    <span ng-switch-when="1">Benefit Volume</span>
+                                                    <span ng-switch-when="2"># Spouse Lives</span>
+                                                    <span ng-switch-when="3">Spouse Volume</span>
+                                                    <span ng-switch-when="4"># Dependent Lives</span>
+                                                    <span ng-switch-when="5">Dependent Volume</span>
+                                                    <span ng-switch-default># Lives</span>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="contacts">
+                    <h1 class="text-muted bolder">3</h1>
+                </div>
+                <div class="tab-pane fade" id="divisions">
+                    <h1 class="text-muted bolder">4</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

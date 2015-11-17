@@ -1,0 +1,271 @@
+<div>
+     <div class="row" style="margin-top: 50px;">
+            <ol class="text-left breadcrumb"  style="margin-top: 25px">
+              <li><a href="#">Home</a></li>
+              <li><a ui-sref="subgroups.list">Sub Groups</a></li>
+              <li class="active">{{subgroup.name}}</li>
+            </ol>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                <h5 class="clearfix">
+                    <span class="pull-left">{{subgroup.name}} <a ng-href='#/subgroups/edit/{{subgroup.$id}}'><i class="fa fa-pencil"></i></a></span>
+                    <span class="pull-right"><i ng-click="removeSubgroup()" class="pointer fa fa-trash-o"></i></span>
+                </h5>
+            </header>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-2" >
+                    <p><strong>Status</strong></p>
+                        <p ng-switch="subgroup.status">
+                            <span ng-switch-when="0">Active</span>
+                            <span ng-switch-when="1">Inactive</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-2" >
+                        <p><strong>Effective Date</strong><br>10/10/14</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul tabs class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#tab1" aria-controls="Invoices" role="tab">Invoices</a>
+                </li>
+                <li role="presentation">
+                    <a href="#employees" aria-controls="Employees" role="tab" ng-click="getEmployees()">Employees</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab4" aria-controls="Product information" role="tab">Product information</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab5" aria-controls="Deduction Reports" role="tab">Deduction Reports</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab6" aria-controls="History" role="tab">History</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab7" aria-controls="Payroll Calendar" role="tab">Payroll Calendar</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab8" aria-controls="Contacts" role="tab">Contacts</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+
+            <div class="tab-content mt15">
+                <div role="tabpanel" class="tab-pane active" id="tab1">
+                    <section class="panel panel-default">
+                        <header class="panel-heading">
+                            <h5 class="clearfix">
+                                <span class="pull-left">Processing Notes</span>
+                                <span class="pull-right">
+                                    <a ng-click="edit('notes', 0)">
+                                        <i ng-hide="is_edit.notes" class="fa fa-pencil"></i>
+                                        <i ng-show="is_edit.notes" class="fa fa-times"></i>
+                                    </a>
+                                </span>
+                            </h5>
+                        </header>
+                        <div class="panel-body">
+                            <p ng-hide="is_edit.notes" ng-bind="subgroup.notes"></p>
+                            <textarea ng-show="is_edit.notes" class="form-control" rows="3" ng-model="subgroup.notes"></textarea>
+                            <div ng-show="is_edit.notes" class="text-center">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="edit('notes', 1)">Save</button>
+                                <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="edit('notes', 0)">Cancel</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div accordion class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        April 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        September 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        July 2014
+                                        <button type="button" class="btn btn-danger btn-xs">Paid</button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- #tab1 -->
+
+                <!-- Employee panel -->
+                <div role="tabpanel" class="tab-pane" id="employees">
+                    <div class="form-inline mb15">
+                        <div class="form-group">
+                            <select class="form-control input-lg" ng-model="statusFilter">
+                                <option value="0">Active</option>
+                                <option value="!">All</option>
+                            </select>
+                        </div>
+                        <a href="#/employees/add" class="btn btn-default btn-lg">Add New Employee +</a>
+                    </div>
+                    <div class="panel-group" id="accordionC" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default" ng-repeat="employee in group.employees | filter:statusFilter:true">
+                            <div class="panel-heading" role="tab" id="heading{{$index}}C">
+                                <h4 class="panel-title" data-toggle="collapse" href="#collapse{{$index}}C" aria-expanded="true" aria-controls="collapse{{$index}}C">
+
+                                    <a class="inline-block" ng-href="#/employees/view/{{employee.$id}}">
+                                        {{employee.name}}
+                                    </a>
+                                    <a class="button-link" ng-href="#/employees/edit/{{employee.$id}}" ><i class="fa fa-pencil"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapse{{$index}}C" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{$index}}C">
+                                <div class="panel-body">
+
+                                    <table class="table table-bordered table-striped mg-t">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Sub Group
+                                                </th>
+                                                <th>
+                                                    DOB
+                                                </th>
+                                                <th>
+                                                    SSN#
+                                                </th>
+                                                <th>
+                                                    First Deduction Date
+                                                </th>
+                                                <th>
+                                                    On Leave Date
+                                                </th>
+                                                <th>
+                                                    Termination Date
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td ng-switch="employee.status">
+                                                    <span ng-switch-when="0">Active</span>
+                                                    <span ng-switch-when="1">Inactive</span>
+                                                </td>
+                                                <td ng-bind="employee.subGroup"></td>
+                                                <td ng-bind="employee.DOB"></td>
+                                                <td ng-bind="employee.SSN | ssnFilter"></td>
+                                                <td ng-bind="employee.FDD"></td>
+                                                <td ng-bind="employee.OLD"></td>
+                                                <td ng-bind="employee.TD"></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- #employees -->
+                <!-- End employee panel -->
+
+                <div role="tabpanel" class="tab-pane" id="tab4">
+
+                    <button class="btn btn-default btn-lg mb15">Add New Product +</button>
+                    <div accordion class="panel-group" id="accordionD" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOneD">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordionD" href="#collapseOneD" aria-expanded="true" aria-controls="collapseOneD">
+                                        <strong>Product 1</strong>
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOneD" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneD">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwoD">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionD" href="#collapseTwoD" aria-expanded="false" aria-controls="collapseTwoD">
+                                        <strong>Product 2</strong>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwoD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoD">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab5">
+                    <h1>Deduction Reports</h1>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab6">
+                    <h1>History</h1>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab7">
+                    <h1>Payroll Calendar</h1>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab8">
+                    <h1>Contacts</h1>
+                </div>
+            </div>
+
+        </div>
+        </section>
+
+    </div>
+</div>
